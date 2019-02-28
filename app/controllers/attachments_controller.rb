@@ -2,7 +2,7 @@ class AttachmentsController < ApplicationController
   before_action :authenticate_user!
   before_filter :load_attachable
   load_and_authorize_resource
-  
+
   def index
     @attachments = @attachable.attachments
   end

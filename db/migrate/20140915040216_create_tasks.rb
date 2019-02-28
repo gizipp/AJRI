@@ -1,4 +1,4 @@
-class CreateTasks < ActiveRecord::Migration
+class CreateTasks < ActiveRecord::Migration[5.2]
   def change
     create_table :tasks do |t|
       t.integer :user_id
@@ -7,6 +7,9 @@ class CreateTasks < ActiveRecord::Migration
       t.string :description
 
       t.timestamps
+      t.boolean :status
     end
+
+    add_index :tasks, :user_id
   end
 end

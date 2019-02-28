@@ -17,13 +17,17 @@ class WorksController < ApplicationController
   # GET /works/1
   # GET /works/1.json
   def show
-    @contributor = Contributor.where(work_id: params[:id]).order('created_at')
     @todo_list = TodoList.where(work_id: params[:id]).order('created_at')
+    @contributor = Contributor.to_con(params[:id])
     
-    # Select the user who not already assigned as contributor
+    # # Select the user who not already assigned as contributor
     @u = User.all.where.not(id: current_user.id)
     @ids = @contributor.map{|x| x.user_id}
     @user = @u.reject{|x| @ids.include? x.id}
+    
+    #filter user
+    #@user = Contributor.filter_contributed_works(params[:id], current_user.id)
+    # @user = Contributor.to_con(1)
   end
 
   # GET /works/new

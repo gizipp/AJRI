@@ -15,12 +15,12 @@ class CommentsController < ApplicationController
     # end
     redirect_to :back
   end
- 
+
   private
     def comment_params
       params.require(:comment).permit(:user_id, :body)
     end
-    
+
     def attach_params
       params.require(:attachment).permit(:attachment, :attachable_id, :attachable_type)
     end

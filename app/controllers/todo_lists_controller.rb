@@ -2,7 +2,7 @@ class TodoListsController < ApplicationController
   before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   load_and_authorize_resource
-  
+
   # GET /todo_lists
   # GET /todo_lists.json
   def index
@@ -13,7 +13,7 @@ class TodoListsController < ApplicationController
   # GET /todo_lists/1.json
   def show
     @task = Task.where(todo_list_id: params[:id]).order('status DESC').order('due_date').page(params[:page]).per(5)
-    @task.each do |t| 
+    @task.each do |t|
       diff = (t.due_date - Date.today).to_i
       t.due_date = convert_due_date(diff)
      end
@@ -24,7 +24,7 @@ class TodoListsController < ApplicationController
       return 0
     elsif num == 0
       return 1
-    else 
+    else
       num = num
     end
     return num

@@ -8,13 +8,13 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :comments
   has_many :contributed_works, through: :contributor
-  has_many :contributors 
-  
+  has_many :contributors
+
   validates :username, presence: true, uniqueness: true
   validates :role, inclusion: { in: %w(member admin), message: "%{value} is not a valid role" }
 
-  mount_uploader :avatar, AvatarUploader
-  
+  # mount_uploader :avatar, AvatarUploader
+
   after_create :send_admin_mail
 
   def send_admin_mail
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   ROLES = %w[member admin]
-  
+
   def role?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(role)
   end

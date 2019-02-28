@@ -1,4 +1,4 @@
-class CreateWorks < ActiveRecord::Migration
+class CreateWorks < ActiveRecord::Migration[5.2]
   def change
     create_table :works do |t|
       t.string :title
@@ -7,5 +7,7 @@ class CreateWorks < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :works, :user_id
   end
 end
