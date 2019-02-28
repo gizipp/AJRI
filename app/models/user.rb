@@ -13,8 +13,6 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :role, inclusion: { in: %w(member admin), message: "%{value} is not a valid role" }
 
-  # mount_uploader :avatar, AvatarUploader
-
   after_create :send_admin_mail
 
   def send_admin_mail
