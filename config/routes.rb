@@ -4,10 +4,7 @@ Rails.application.routes.draw do
     resources :contributors
     resources :todo_lists do
       resources :tasks do
-        resources :comments do
-          resources :attachments
-        end
-        resources :attachments
+        resources :comments
       end
     end
   end
