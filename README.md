@@ -13,3 +13,8 @@
 # Admin
 username : admin
 password : admin123
+
+
+Stack
+backend - Ruby on Rails
+frontend - Vue.js, with vue-router and vue-resource 
